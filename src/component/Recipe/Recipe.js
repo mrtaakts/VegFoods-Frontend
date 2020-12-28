@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import CategoryRow from "./CategoryRow";
 import { Link } from "react-router-dom";
+import RecipeRow from "./RecipeRow"
 
-function Category() {
-  const [stateCategory, setCategoryState] = useState([]);
+function Recipe() {
+  const [stateRecipe, setRecipeState] = useState([]);
 
   useEffect(() => {
-    getCategory();
+    getRecipe();
   }, []);
 
-  const getCategory = () => {
+  const getRecipe = () => {
     axios
-      .get("https://localhost:44357/api/categories")
+      .get("https://localhost:44357/api/recipes/ingredient")
       .then(data => {
-        let categories = data.data;
-        setCategoryState(
-          categories.map(d => {
+        let recipes = data.data;
+        setRecipeState(
+          recipes.map(d => {
             return {
               select: false,
               id: d.id,
               name: d.name,
+              categoryId : d.categoryId,
+              description : d.description,
+              ingredients: d.ingredients
            
             };
           })
@@ -29,9 +32,9 @@ function Category() {
       .catch(err => alert(err));
   };
 
-  const deleteCategoryByIds = () => {
+  const deleteRecipeByIds = () => {
     let arrayids = [];
-    stateCategory.forEach(d => {
+    stateRecipe.forEach(d => {
       if (d.select) {
         arrayids.push(d.id);
       }
@@ -40,7 +43,7 @@ function Category() {
       .delete(`https://localhost:44357/api/categories/${arrayids}`)
       .then(data => {
         console.log(data);
-        getCategory();
+        getRecipe();
       })
       .catch(err => alert(err));
   };
@@ -48,16 +51,16 @@ function Category() {
   return (
     <div>
       <div>
-      <Link to="/addCategory">
-        <button className="btn btn-primary btn-sm m-2">Add Category</button>
+      <Link to="/addRecipe">
+        <button className="btn btn-primary btn-sm m-2">Add Recipe</button>
       </Link>
       <button
         className="btn btn-danger btn-sm m-2"
         onClick={() => {
-          deleteCategoryByIds();
+          deleteRecipeByIds();
         }}
       >
-        Delete Category
+        Delete Recipe
       </button>
     
       </div>
@@ -70,8 +73,8 @@ function Category() {
                 type="checkbox"
                 onChange={e => {
                   let value = e.target.checked;
-                  setCategoryState(
-                    stateCategory.map(d => {
+                  setRecipeState(
+                    stateRecipe.map(d => {
                       d.select = value;
                       return d;
                     })
@@ -81,14 +84,16 @@ function Category() {
             </th>
             <th scope="col">#</th>
             <th scope="col">Name</th>
-          
+            <th scope="col">categoryId</th>
+            <th scope="col">Description</th>
+            <th scope="col">Ingredients</th>
             <th scope="col">Edit</th>
           </tr>
         </thead>
         <tbody>
-          <CategoryRow
-            stateCategory={stateCategory}
-            setCategoryState={setCategoryState}
+        <RecipeRow
+            stateCategory={stateRecipe}
+            setCategoryState={setRecipeState}
           />
         </tbody>
       </table>
@@ -96,4 +101,4 @@ function Category() {
   );
 }
 
-export default Category;
+export default Recipe;

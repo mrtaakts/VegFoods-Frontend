@@ -20,7 +20,7 @@ function AddIngredient(props) {
     axios
       .post("https://localhost:44357/api/ingredients", ingredient)
       .then(d => {
-        window.location.pathname= '/Ingredient'; // REDIRECT
+        props.history.push("/Ingredient"); // REDIRECT
         console.log(d);
       })
       .catch(err => alert(err));

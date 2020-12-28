@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import {logout} from "../../actions/authAction";
 
 function Header() {
   return (
@@ -22,18 +24,46 @@ function Header() {
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
         <li class="nav-item">
-        <a class="nav-link" href="/">Kategori <span class="sr-only">(current)</span></a>
+        <Link className="nav-link" to='/Category'>Kategori</Link>
         </li>
         
         <li class="nav-item">
-        <a class="nav-link" href="/Ingredient">Malzemeler <span class="sr-only">(current)</span></a>
+        <Link className="nav-link" to='/Ingredient'>Malzemeler</Link>
+        </li>
+
+        <li class="nav-item">
+        <Link className="nav-link" to='/Recipe'>Tarifler</Link>
+        </li>
+
+        <li class="nav-item">
+        <Link className="nav-link" to='/Register'>Kayıt ol</Link>
         </li>
         
         </ul>
+    
+            <div className="ui compact menu">
+            <div className="ui simple dropdown item">
+           
+              <i className="dropdown icon"></i>
+              <div className="menu">
+                <div className="item">
+                <Link className="nav-link" to="/Login"
+                      onClick={()=>{
+                        localStorage.clear();
+                      }}
+                    >Çıkış Yap</Link>
+                </div>
+                </div>
+              </div>
+            </div>
+         
   </div>
       </nav>
     </div>
   );
 }
 
-export default Header;
+const mapStateToProps=(state)=>{
+  return state;
+}
+export default connect(mapStateToProps,{logout})(Header);
