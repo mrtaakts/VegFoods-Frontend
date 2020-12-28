@@ -1,35 +1,37 @@
-import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import axios from 'axios';
+import React from "react";
+import Header from "./layout/header/Header";
+import Category from "./component/Category/Category";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import AddCategory from "./component/Category/AddCategory/AddCategory";
+import EditCategory from "./component/Category/EditCategory/EditCategory";
+import AddIngredient from "./component/Ingredient/AddIngredient/AddIngredient";
+import Ingredient from "./component/Ingredient/Ingredient";
+import EditIngredient from "./component/Ingredient/EditIngredient/EditIngredient";
 
-class App extends Component {
-  state = {
-    categories: []
-  }
-  componentDidMount() {
-    axios.get('https://localhost:44357/api/categories').then((response)=> {
-      this.setState({
-        categories: response.data
-      })
-    })
-    
-    
-  }
-  render() {
-      return (
-    <div className="App">
-      <header className="App-header">
-        <h3>List of Categories</h3>
-        <ul>
-          {this.state.categories.map((category) => (
-            <li key="{category.id}" >{ category.name } </li>
-            
-          ))}
-        </ul>
-      </header>
+function App() {
+  return (
+    <div>
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path="/">
+            <Category />
+          </Route>
+          <Route exact path="/add">
+            <AddCategory />
+          </Route>
+          <Route exact path="/addIngredient">
+            <AddIngredient />
+          </Route>
+          <Route exact path="/Ingredient">
+            <Ingredient />
+          </Route>
+          <Route exact path="/edit/:id" render={props => <EditCategory />} />
+          <Route exact path="/editIngredient/:id" render={props => <EditIngredient />} />
+        </Switch>
+      </Router>
     </div>
   );
-  }
 }
+
 export default App;
