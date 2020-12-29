@@ -10,7 +10,6 @@ function EditIngredient(props) {
   }, []);
   const getIngredientById = id => {
     let token = localStorage.getItem("jwtToken");
-
     axios
       .get(`https://localhost:44357/api/Ingredients/${id}`, {
         headers: {

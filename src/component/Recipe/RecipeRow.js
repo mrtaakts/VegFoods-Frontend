@@ -29,11 +29,6 @@ function RecipeRow(props) {
      
      
 
-      
-
-   
-      
-
      
       <td>
         <Link to={`edit/${d.id}`}>

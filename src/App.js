@@ -47,11 +47,14 @@ class App extends Component {
           <Route exact component={Recipe} path="/Recipe">
         
           </Route>
+          <Route exact component={AddRecipe} path="/addRecipe">
+        
+        </Route>
           <Route exact component={Login} path="/Login">
          
           </Route>
 
-          <Route exact component={AddRecipe} path="/addRecipe">
+          <Route exact component={AddRecipe} path="/AddRecipe">
          
          </Route>
           
