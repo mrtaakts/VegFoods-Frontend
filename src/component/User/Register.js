@@ -27,31 +27,40 @@ function AddRegister(props) {
   };
 
   return (
-    <div className="container my-3">
+    <div className="col-md-9 mx-auto mt-5 pt-2 pb-3">
+     <div className="col-md-9 mx-auto pt-2 pb-2" style={{ backgroundColor:"white"}}>
       <form
         onSubmit={e => {
           e.preventDefault();
           submit(e);
         }}
+        style={{color:"#737373"}}
       >
+        <h2>Kayıt Ol</h2>
         <div className="form-group">
-          <label>UserName</label>
-          <input type="text" className="form-control form-control-sm" />
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input type="text" className="form-control form-control-sm" />
-        </div>
-        <div className="form-group">
-          <label>Full Name</label>
-          <input type="text" className="form-control form-control-sm" />
-        </div>
-   
+          <label> <b> Kullanıcı Adı</b></label>
 
-        <button type="submit" className="btn btn-primary btn-sm">
-          Submit
+          <input type="text" className="form-control form-control-sm"  placeholder="Kullanıcı adınızı giriniz" />
+        </div>
+        <div className="form-group">
+          <label><b>Şifre </b></label>
+          <input type="text" className="form-control form-control-sm" placeholder="Şifrenizi giriniz" />
+        </div>
+        <div className="form-group">
+          <label> <b>Tam Ad</b></label>
+          <input type="text" className="form-control form-control-sm" placeholder="Tam adınızı giriniz" />
+        </div>
+         
+        
+   
+<div className="text-center">
+<button type="submit" className="btn btn-secondary ">
+          Kayıt Ol
         </button>
+</div>
+        
       </form>
+    </div>
     </div>
   );
 }

@@ -17,8 +17,14 @@ function AddIngredient(props) {
 
   
   const postIngredient = ingredient => {
+    let token = localStorage.getItem("jwtToken");
     axios
-      .post("https://localhost:44357/api/ingredients", ingredient)
+      .post("https://localhost:44357/api/ingredients", ingredient, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+token
+        },
+      })
       .then(d => {
         props.history.push("/Ingredient"); // REDIRECT
         console.log(d);
@@ -27,23 +33,26 @@ function AddIngredient(props) {
   };
 
   return (
-    <div className="container my-3">
-      <form
+    <div className="col-md-9 mx-auto mt-5 pt-2 pb-3" style={{marginBottom:"30vh"}}>
+      <form className="col-md-9 mx-auto pt-2 pb-2" style={{ backgroundColor:"white", color:"#737373", marginTop:"5vh"}}
         onSubmit={e => {
           e.preventDefault();
           submit(e);
          
         }}
       >
+        <h3 style={{marginTop:"2vh", marginBottom:"2vh"}}>Malzeme Ekle</h3>
         <div className="form-group">
-          <label>Name</label>
-          <input type="text" className="form-control form-control-sm" />
+          <label> <b> Malzeme İsmi </b></label>
+          <input type="text" className="form-control form-control-sm" placeholder="Malzeme İsmini Giriniz" />
         </div>
    
-
-        <button type="submit" className="btn btn-primary btn-sm" >
-          Submit
+        <div className="text-center">
+        <button type="submit" className="btn btn-secondary " >
+          Ekle
         </button>
+        </div>
+       
       </form>
     </div>
   );

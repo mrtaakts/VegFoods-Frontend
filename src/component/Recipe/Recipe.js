@@ -24,7 +24,6 @@ function Recipe() {
               categoryId : d.categoryId,
               description : d.description,
               ingredients: d.ingredients
-           
             };
           })
         );
@@ -40,7 +39,7 @@ function Recipe() {
       }
     });
     axios
-      .delete(`https://localhost:44357/api/categories/${arrayids}`)
+      .delete(`https://localhost:44357/api/recipes/${arrayids}`)
       .then(data => {
         console.log(data);
         getRecipe();
@@ -49,23 +48,10 @@ function Recipe() {
   };
 
   return (
-    <div>
-      <div>
-      <Link to="/addRecipe">
-        <button className="btn btn-primary btn-sm m-2">Add Recipe</button>
-      </Link>
-      <button
-        className="btn btn-danger btn-sm m-2"
-        onClick={() => {
-          deleteRecipeByIds();
-        }}
-      >
-        Delete Recipe
-      </button>
-    
-      </div>
+    <div className="col-md-9 mx-auto mt-5">
+
  
-      <table className="table table-striped">
+      <table className="table table-striped text-center" style={{marginTop:"3vh" , backgroundColor:"white", color:"#737373"}}>
         <thead>
           <tr>
             <th>
@@ -82,21 +68,35 @@ function Recipe() {
                 }}
               />
             </th>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">categoryId</th>
-            <th scope="col">Description</th>
-            <th scope="col">Ingredients</th>
-            <th scope="col">Edit</th>
+            <th scope="col">#Id</th>
+            <th scope="col">Tarif İsmi</th>
+            <th scope="col">Kategori</th>
+            <th scope="col">İçerik</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
         <RecipeRow
-            stateCategory={stateRecipe}
-            setCategoryState={setRecipeState}
+            stateRecipe={stateRecipe}
+            setRecipeState={setRecipeState}
           />
         </tbody>
       </table>
+
+      <div className="text-right" style={{color:"#737373"}}>
+      <Link to="/addRecipe">
+        <button className="btn btn-primary btn-sm m-2">Tarif Ekle</button>
+      </Link>
+      <button
+        className="btn btn-danger btn-sm m-2"
+        onClick={() => {
+          deleteRecipeByIds();
+        }}
+      >
+        Tarif Sil
+      </button>
+    
+      </div>
     </div>
   );
 }

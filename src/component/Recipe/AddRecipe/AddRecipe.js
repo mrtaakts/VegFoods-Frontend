@@ -2,19 +2,24 @@ import React from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 
-function AddCategory(props) {
+function Addrecipe(props) {
   const submit = e => {
     let name = e.target[0].value;
-    let category = {
-      name
+    let recipeId = e.target[1].value;
+    let description = e.target[2].value;
+    let recipes = {
+      name,
+      recipeId,
+      description,
+      
 
     };
-    postCategory(category);
+    postrecipe(recipes);
   };
 
-  const postCategory = category => {
+  const postrecipe = recipes => {
     axios
-      .post("https://localhost:44357/api/categories", category)
+      .post("https://localhost:44357/api/categories", recipes)
       .then(d => {
         console.log(d);
         props.history.push("/");
@@ -31,7 +36,7 @@ function AddCategory(props) {
        
       }}
     >
-      <h3 style={{marginTop:"2vh", marginBottom:"2vh"}}>Kategori Ekle</h3>
+      <h3 style={{marginTop:"2vh", marginBottom:"2vh"}}>Tarif Ekle</h3>
       <div className="form-group">
         <label><b>Kategori İsmi</b></label>
         <input type="text" className="form-control form-control-sm"
@@ -52,4 +57,4 @@ function AddCategory(props) {
   );
 }
 
-export default withRouter(AddCategory);
+export default withRouter(Addrecipe);

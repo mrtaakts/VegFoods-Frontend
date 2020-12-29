@@ -9,11 +9,13 @@ import Ingredient from "./component/Ingredient/Ingredient";
 import EditIngredient from "./component/Ingredient/EditIngredient/EditIngredient";
 import Register from "./component/User/Register";
 import Recipe from "./component/Recipe/Recipe";
-import Login from "./component/Login/Login";
+import Login from "./component/User/Login/Login";
 import history from './helpers/history';
 import {isLoggedIn} from './actions/authAction';
 import {connect} from 'react-redux';
 import { Router } from "react-router-dom";
+import Footer from "./layout/footer/Footer";
+import AddRecipe from "./component/Recipe/AddRecipe/AddRecipe";
 
 
 
@@ -48,9 +50,15 @@ class App extends Component {
           <Route exact component={Login} path="/Login">
          
           </Route>
+
+          <Route exact component={AddRecipe} path="/addRecipe">
+         
+         </Route>
+          
           <Route exact path="/edit/:id" render={props => <EditCategory />} />
           <Route exact path="/editIngredient/:id" render={props => <EditIngredient />} />
         </Switch>
+        <Footer/>
       </Router>
     </div>
   );

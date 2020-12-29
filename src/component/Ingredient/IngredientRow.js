@@ -24,9 +24,9 @@ function IngredientRow(props) {
       <th scope="row">{d.id}</th>
       <td>{d.name}</td>
      
-      <td>
+      <td className="text-right">
         <Link to={`editIngredient/${d.id}`}>
-          <button className="btn btn-primary btn-sm">Edit</button>
+          <button className="btn btn-primary btn-sm">Güncelle</button>
         </Link>
       </td>
     </tr>

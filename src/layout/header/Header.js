@@ -4,11 +4,12 @@ import { connect } from "react-redux";
 import {logout} from "../../actions/authAction";
 
 function Header() {
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <Link className="navbar-brand" to="/">
-          Navbar
+          VegFoods
         </Link>
         <button
           className="navbar-toggler"
@@ -21,41 +22,45 @@ function Header() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-        <li class="nav-item">
+        <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav">
+        <li className="nav-item">
         <Link className="nav-link" to='/Category'>Kategori</Link>
         </li>
         
-        <li class="nav-item">
+        <li className="nav-item">
         <Link className="nav-link" to='/Ingredient'>Malzemeler</Link>
         </li>
 
-        <li class="nav-item">
+        <li className="nav-item">
         <Link className="nav-link" to='/Recipe'>Tarifler</Link>
         </li>
 
-        <li class="nav-item">
+        <li className="nav-item">
         <Link className="nav-link" to='/Register'>Kayıt ol</Link>
         </li>
+
+        <li className="nav-item">
+        <Link className="nav-link" to="/Login"> Giriş</Link>
+        </li>
         
+        <li className="nav-item">
+        <Link className="nav-link" to="/Login"
+          onClick={()=>{
+            localStorage.clear();
+              }}> Çıkış Yap</Link>
+        </li>
+
+
         </ul>
     
-            <div className="ui compact menu">
-            <div className="ui simple dropdown item">
+          
            
-              <i className="dropdown icon"></i>
-              <div className="menu">
-                <div className="item">
-                <Link className="nav-link" to="/Login"
-                      onClick={()=>{
-                        localStorage.clear();
-                      }}
-                    >Çıkış Yap</Link>
-                </div>
-                </div>
-              </div>
-            </div>
+              
+              
+     
+                
+           
          
   </div>
       </nav>

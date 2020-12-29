@@ -6,7 +6,7 @@ import {
      Input,
     Button,
   } from 'reactstrap';
-  import {loginUser} from '../../actions/authAction';
+  import {loginUser} from '../../../actions/authAction';
  class LoginComponent extends Component {
      
     state ={
@@ -27,25 +27,25 @@ import {
         const {username,password}=this.state;
         return (
           
-        <Container className="pt-4">
+        <Container className="pt-4" style={{color:"#737373"}} >
         
-        <div className="ui placeholder segment">
+        <div className="ui placeholder segment mx-2 my-2" >
         <div className="ui two column very relaxed stackable grid">
-        <div className="column">
+        <div className="column col-md-9 mx-auto mt-5 pt-2 pb-3" style={{ backgroundColor:"white"}}>
         <Form className="ui form" onSubmit={this.loginUser.bind(this)}>
-        <h2>Giriş Yap</h2>
-          <div className="field">
-            <label>username</label>
+        <h2 className="">Giriş Yap</h2>
+          <div className="field my-2">
+            <label>Kullanıcı Adı</label>
             <Input
                 type="text"
                 name="username"
                 value={username}
                 onChange={this.changeInput}
                 id="username"
-                placeholder="UserName"
+                placeholder="Kullanıcı Adınızı Giriniz"
               />
           </div>
-          <div className="field">
+          <div className="field mb-3">
             <label>Şifre</label>
             <Input
                 type="password"
@@ -53,20 +53,17 @@ import {
                 value={password}
                 onChange={this.changeInput}
                 id="password"
-                placeholder="********"
+                placeholder="Şifrenizi giriniz"
               />
           </div>
-          <Button className="ui button">Giriş Yap</Button>
+
+          <div className="text-center mt-4" >
+          <Button className="ui button mb-2 ">Giriş Yap</Button>
+          </div>
+         
           </Form>
            </div>
-           <div className="middle aligned column">
-            <div className="ui big button">
-              <i className="signup icon"></i>
-              <Link to="/Register">Kayıt Ol</Link> 
-            </div>
-          </div>
-          </div><div className="ui vertical divider">
-            Ya da
+     
           </div></div>
           </Container>
         )
